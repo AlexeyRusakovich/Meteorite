@@ -1,3 +1,4 @@
+using Meteorite.Api.Interfaces;
 using Meteorite.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,14 +8,28 @@ namespace Meteorite.Api.Controllers
     [Route("[controller]")]
     public class MeteoriteController : ControllerBase
     {
-        public MeteoriteController()
+        private readonly IMeteoriteRepository _meteoriteRepository;
+
+        public MeteoriteController(IMeteoriteRepository meteoriteRepository)
         {
+            _meteoriteRepository = meteoriteRepository;
         }
 
         [HttpGet]
-        public IActionResult GetMeteoritesFiltered([FromQuery] MeteoriteFilter filter)
+        public async Task<IActionResult> GetMeteoritesFiltered([FromQuery] MeteoriteFilter filter)
         {
-            return Ok();
+            var result = await _meteoriteRepository.GetMeteoritesDataGrouped(filter);
+            if (!result.Any())
+                return NoContent();
+
+            return Ok(result);
+        }
+
+        [HttpGet("dictionaries")]
+        public async Task<IActionResult> GetMeteoritesDictionaries()
+        {
+            var result =  await _meteoriteRepository.GetMeteoritesDictionaries();
+            return Ok(result);
         }
     }
 }

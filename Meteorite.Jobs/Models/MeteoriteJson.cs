@@ -8,9 +8,9 @@ namespace Meteorite.Jobs.Models
         public string Name { get; set; }
         public string NameType { get; set; }
         public string RecClass { get; set; }
-        public string Mass { get; set; }
+        public double? Mass { get; set; }
         public string Fall { get; set; }
-        public DateTime Year { get; set; }
+        public DateTime? Year { get; set; }
         public string RecLat { get; set; }
         public string RecLong { get; set; }
         public MeteoriteGeolocationJson Geolocation { get; set; }

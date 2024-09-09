@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
+using Meteorite.Api.Interfaces;
 using Meteorite.Api.Models;
+using Meteorite.Api.Services;
 using Meteorite.Api.Validators;
 using Meteorite.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,8 @@ namespace Meteorite.Api.Extensions
             //Db
             var connection = configuration?.GetSection("ConnectionStrings")?.GetSection("DefaultConnection")?.Value;
             services.AddDbContext<MeteoriteContext>(options => options.UseSqlServer(connection));
+
+            services.AddTransient<IMeteoriteRepository, MeteoriteRepository>();
 
             // Validators
             services.AddScoped<IValidator<MeteoriteFilter>, MeteoriteFilterValidator>();

@@ -16,8 +16,7 @@ namespace Meteorite.Data.Models
         [MaxLength(30)]
         public string? RecClass { get; set; }
 
-        [MaxLength(50)]
-        public string? Mass { get; set; }
+        public double? Mass { get; set; }
 
         [MaxLength(5)]
         public string? Fall { get; set; }
