@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meteorite.Data", "Meteorite
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meteorite.Jobs", "Meteorite.Jobs\Meteorite.Jobs.csproj", "{CBDABFD0-674E-44A5-975A-BBAD7C0425EC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meteorite.Api", "Meteorite.Api\Meteorite.Api.csproj", "{C0FFFE75-FA57-4D82-BABC-85463CD63763}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CBDABFD0-674E-44A5-975A-BBAD7C0425EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBDABFD0-674E-44A5-975A-BBAD7C0425EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBDABFD0-674E-44A5-975A-BBAD7C0425EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FFFE75-FA57-4D82-BABC-85463CD63763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FFFE75-FA57-4D82-BABC-85463CD63763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FFFE75-FA57-4D82-BABC-85463CD63763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FFFE75-FA57-4D82-BABC-85463CD63763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
