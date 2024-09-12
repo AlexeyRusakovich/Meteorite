@@ -1,0 +1,34 @@
+.filtersPanel {
+    height: 100px;
+
+    .filterItem {
+        margin: 10px 10px;
+        vertical-align: top;
+    }
+    
+    .filterFrom {
+        width: 140px;
+    }
+
+    .filterTo {
+        width: 140px;
+    }
+     
+    .nameInput {
+        width: 200px;
+    }
+
+    .searchButton {
+        height: 56px;
+    }
+}
+
+.tablePanel {
+    height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .meteoriteOverviewTable {
+        margin: 10px 10px;
+    }
+}
+

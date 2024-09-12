@@ -21,7 +21,7 @@ namespace Meteorite.Data.Models
         [MaxLength(5)]
         public string? Fall { get; set; }
 
-        public DateTime? Year { get; set; }
+        public int? Year { get; set; }
 
         [MaxLength(15)]
         public string? RecLat { get; set; }

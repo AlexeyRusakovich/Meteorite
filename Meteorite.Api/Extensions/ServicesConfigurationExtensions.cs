@@ -17,6 +17,7 @@ namespace Meteorite.Api.Extensions
         public static IServiceCollection ConfigureServices(this IServiceCollection services, ConfigurationManager configuration)
         {
             services.AddControllers();
+            services.AddResponseCaching();
 
             //Db
             var connection = configuration?.GetSection("ConnectionStrings")?.GetSection("DefaultConnection")?.Value;
@@ -45,6 +46,17 @@ namespace Meteorite.Api.Extensions
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins(configuration.GetSection("AllowedHosts").Value?.Split(';'))
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
             });
 
             services.AddEndpointsApiExplorer();

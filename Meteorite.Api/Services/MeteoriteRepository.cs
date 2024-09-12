@@ -18,9 +18,14 @@ namespace Meteorite.Api.Services
         {
             var meteoritesQuery = _context.Meteorites.AsQueryable().Where(x => x.Year != null);
 
-            if (filter.YearFrom.HasValue && filter.YearTo.HasValue)
+            if (filter.YearFrom.HasValue)
             {
-                meteoritesQuery = meteoritesQuery.Where(x => x.Year.Value.Year >= filter.YearFrom && x.Year.Value.Year <= filter.YearTo);
+                meteoritesQuery = meteoritesQuery.Where(x => x.Year.Value >= filter.YearFrom);
+            }
+
+            if (filter.YearTo.HasValue)
+            {
+                meteoritesQuery = meteoritesQuery.Where(x => x.Year.Value <= filter.YearTo);
             }
 
             if (filter.RecClass != null)
@@ -37,7 +42,7 @@ namespace Meteorite.Api.Services
                 .GroupBy(x => x.Year)
                 .Select(x => new MeteoriteDataGroupedDto
                 {
-                    Year = x.Key.Value.Year,
+                    Year = x.Key.Value,
                     Count = x.Count(),
                     WeightTotal = x.Sum(x => x.Mass)
                 })
@@ -50,7 +55,7 @@ namespace Meteorite.Api.Services
         {
             var distinctYears = await _context.Meteorites
                 .Where(x => x.Year != null)
-                .Select(x => x.Year.Value.Year)
+                .Select(x => x.Year.Value)
                 .Distinct()
                 .OrderBy(x => x)
                 .ToListAsync();

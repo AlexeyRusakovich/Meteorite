@@ -4,6 +4,7 @@ using Meteorite.Jobs.Enums;
 using Meteorite.Jobs.Extensions;
 using Meteorite.Jobs.Interfaces;
 using Meteorite.Jobs.Models;
+using Serilog;
 using System.Data;
 
 namespace Meteorite.Jobs.Services
@@ -42,6 +43,11 @@ namespace Meteorite.Jobs.Services
             var meteoritesToDelete = _meteoritesCache
                 .Where(x => !meteoritesDictionary.ContainsKey(x.Key))
                 .Select(x => new MeteoriteDb { Id = x.Key });
+
+            Log.Information($"Meteorites cache");
+            Log.Information($"{meteoritesToAdd.Count} meteorites to add," +
+                            $"{meteoritesToUpdate.Count} meteorites to update," +
+                            $"{meteoritesToDelete.Count()} meteorites to delete.");
 
             return new MeteoritesStatuses
             {

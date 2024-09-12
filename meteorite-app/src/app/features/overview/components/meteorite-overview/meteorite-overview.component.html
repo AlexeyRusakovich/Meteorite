@@ -1,0 +1,63 @@
+<div>
+    <div class="filtersPanel">
+        <mat-form-field class="filterItem filterFrom">
+            <mat-label>From</mat-label>
+            <mat-select [(value)]="fromOption">
+            @for (year of yearOptions; track year) {
+                <mat-option [value]="year">{{year}}</mat-option>
+            }
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="filterItem filterTo">
+            <mat-label>To</mat-label>
+            <mat-select [(value)]="toOption">
+            @for (year of yearOptions; track year) {
+                <mat-option [value]="year">{{year}}</mat-option>
+            }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="filterItem">
+            <mat-label>Meteorite class</mat-label>
+            <mat-select [(value)]="classOption">
+            @for (classOption of classOptions; track classOption) {
+                <mat-option [value]="classOption">{{classOption}}</mat-option>
+            }
+            </mat-select>
+        </mat-form-field>
+            
+        <mat-form-field class="filterItem nameInput">
+            <mat-label>Part of meteorite name</mat-label>
+            <input matInput type="text" placeholder="Name" [(ngModel)]="partOfTheName">
+            @if (partOfTheName) {
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="partOfTheName=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              }
+        </mat-form-field>
+
+        <button mat-raised-button class="filterItem searchButton" (click)="search()">Search</button>
+    </div>
+    <div class="tablePanel">
+        <table mat-table matSort [dataSource]="meteoritesGroupedData" class="meteoriteOverviewTable">
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by year">Year</th>
+                <td mat-cell *matCellDef="let element">{{element.year}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="count">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by count">Count Total</th>
+                <td mat-cell *matCellDef="let element">{{element.count}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="weightTotal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weightTotal">Weight Total</th>
+                <td mat-cell *matCellDef="let element">{{element.weightTotal}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

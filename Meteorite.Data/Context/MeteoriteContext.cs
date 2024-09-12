@@ -12,8 +12,12 @@ namespace Meteorite.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MeteoriteDb>()
-                .HasKey(e => e.Id);
+            modelBuilder.Entity<MeteoriteDb>(e =>
+            {
+                e.HasKey(e => e.Id);
+
+                e.HasIndex(e => new { e.RecClass, e.Year, e.Name });
+            });
         }
     }
 }

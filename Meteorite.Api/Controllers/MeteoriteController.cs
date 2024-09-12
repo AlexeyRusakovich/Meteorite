@@ -16,6 +16,7 @@ namespace Meteorite.Api.Controllers
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 300, VaryByQueryKeys = new[] { "YearFrom", "YearTo", "RecClass", "Name" })]
         public async Task<IActionResult> GetMeteoritesFiltered([FromQuery] MeteoriteFilter filter)
         {
             var result = await _meteoriteRepository.GetMeteoritesDataGrouped(filter);
@@ -26,6 +27,7 @@ namespace Meteorite.Api.Controllers
         }
 
         [HttpGet("dictionaries")]
+        [ResponseCache(Duration = 300)]
         public async Task<IActionResult> GetMeteoritesDictionaries()
         {
             var result =  await _meteoriteRepository.GetMeteoritesDictionaries();
